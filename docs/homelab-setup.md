@@ -32,4 +32,8 @@ $ talosctl kubeconfig --nodes homelab.lan.nieradko.com --talosconfig talosconfig
 $ talosctl health --nodes homelab.lan.nieradko.com --talosconfig talosconfig
 $ talosctl config merge talosconfig
 $ cd ../ && rm -rf ./talos
+$ helm repo add argo https://argoproj.github.io/argo-helm
+$ helm repo update
+$ helm install argocd argo/argo-cd -f kubernetes/argocd/values.yaml --create-namespace --namespace argocd --atomic
+$ kubectl apply -f kubernetes/argocd/apps/root-app.yaml
 ```

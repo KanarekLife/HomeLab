@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: infra-project
+  namespace: argocd
+spec:
+  description: Infrastructure Project
+  sourceRepos:
+    - https://github.com/KanarekLife/HomeLab.git
+    - https://argoproj.github.io/argo-helm
+    - https://kubernetes-sigs.github.io/metrics-server/
+    - https://helm.cilium.io/
+    - https://github.com/alex1989hu/kubelet-serving-cert-approver
+  destinations:
+    - namespace: "*"
+      name: in-cluster
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
