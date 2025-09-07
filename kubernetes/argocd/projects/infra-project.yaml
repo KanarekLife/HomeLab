@@ -11,6 +11,7 @@ spec:
     - https://kubernetes-sigs.github.io/metrics-server/
     - https://helm.cilium.io/
     - https://github.com/alex1989hu/kubelet-serving-cert-approver
+    - https://charts.jetstack.io
   destinations:
     - namespace: "*"
       name: in-cluster
