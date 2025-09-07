@@ -12,6 +12,7 @@ spec:
     - https://helm.cilium.io/
     - https://github.com/alex1989hu/kubelet-serving-cert-approver
     - https://charts.jetstack.io
+    - https://github.com/kubernetes-sigs/gateway-api.git
   destinations:
     - namespace: "*"
       name: in-cluster
