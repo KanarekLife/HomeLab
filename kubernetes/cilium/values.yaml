@@ -37,3 +37,14 @@ gatewayAPI:
 
 operator:
   replicas: 1
+
+encryption:
+  enabled: true
+  type: wireguard
+
+hubble:
+  enabled: true
+  relay:
+    enabled: true
+  ui:
+    enabled: true
