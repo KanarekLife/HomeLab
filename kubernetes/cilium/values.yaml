@@ -3,6 +3,9 @@ ipam:
 
 kubeProxyReplacement: true
 
+k8sServiceHost: localhost
+k8sServicePort: 7445
+
 securityContext:
   capabilities:
     ciliumAgent:
@@ -27,24 +30,18 @@ cgroup:
     enabled: false
   hostRoot: /sys/fs/cgroup
 
-k8sServiceHost: localhost
-k8sServicePort: 7445
+operator:
+  replicas: 1
+
+l2announcements:
+  enabled: true
+
+externalIPs:
+  enabled: true
+
+devices: enp0s31f6
 
 gatewayAPI:
   enabled: true
   enableAlpn: true
   enableAppProtocol: true
-
-operator:
-  replicas: 1
-
-encryption:
-  enabled: true
-  type: wireguard
-
-hubble:
-  enabled: true
-  relay:
-    enabled: true
-  ui:
-    enabled: true

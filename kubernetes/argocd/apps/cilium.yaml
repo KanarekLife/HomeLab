@@ -15,9 +15,15 @@ spec:
         releaseName: cilium
         valueFiles:
           - $repo/kubernetes/cilium/values.yaml
+    - repoURL: https://github.com/kubernetes-sigs/gateway-api.git
+      targetRevision: v1.3.0
+      path: config/crd/standard
     - repoURL: https://github.com/KanarekLife/HomeLab.git
       targetRevision: HEAD
       ref: repo
+    - repoURL: https://github.com/KanarekLife/HomeLab.git
+      targetRevision: HEAD
+      path: kubernetes/cilium/manifests
   destination:
     name: in-cluster
     namespace: cilium
