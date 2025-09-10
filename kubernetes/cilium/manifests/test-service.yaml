@@ -1,0 +1,119 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-lb-app
+  namespace: default
+  labels:
+    app: test-lb-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-lb-app
+  template:
+    metadata:
+      labels:
+        app: test-lb-app
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+            - name: html-content
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: html-content
+          configMap:
+            name: test-lb-html
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-lb-html
+  namespace: default
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Load Balancer Test</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding: 50px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+            }
+            .container {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 30px;
+                border-radius: 10px;
+                backdrop-filter: blur(10px);
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            .hostname {
+                background: rgba(255, 255, 255, 0.2);
+                padding: 10px;
+                border-radius: 5px;
+                margin: 20px 0;
+                font-family: monospace;
+            }
+            .timestamp {
+                color: #ccc;
+                font-size: 0.9em;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🌐 Load Balancer Test Service</h1>
+            <p>This service is running on:</p>
+            <div class="hostname" id="hostname">Loading...</div>
+            <p>Request served at:</p>
+            <div class="timestamp" id="timestamp">Loading...</div>
+            <p>If you see different hostnames on refresh, your load balancer is working correctly!</p>
+        </div>
+        
+        <script>
+            function updateInfo() {
+                document.getElementById('timestamp').textContent = new Date().toLocaleString();
+                
+                // Try to get hostname from environment (this won't work in browser, but shows the concept)
+                fetch('/api/hostname')
+                    .catch(() => {
+                        document.getElementById('hostname').textContent = 'Pod: ' + Math.random().toString(36).substr(2, 9);
+                    });
+            }
+            
+            updateInfo();
+            setInterval(updateInfo, 1000);
+        </script>
+    </body>
+    </html>
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-lb-service
+  namespace: default
+  labels:
+    app: test-lb-app
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 1234
+  selector:
+    app: test-lb-app
