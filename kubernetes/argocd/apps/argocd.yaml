@@ -18,6 +18,9 @@ spec:
     - repoURL: https://github.com/KanarekLife/HomeLab.git
       targetRevision: HEAD
       ref: repo
+    - repoURL: https://github.com/KanarekLife/HomeLab.git
+      targetRevision: HEAD
+      path: kubernetes/argocd/manifests
   destination:
     name: in-cluster
     namespace: argocd
