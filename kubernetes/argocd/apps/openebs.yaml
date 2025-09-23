@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openebs
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: infrastructure
+  sources:
+    - repoURL: https://openebs.github.io/openebs
+      chart: openebs
+      targetRevision: 4.3.3
+      helm:
+        releaseName: openebs
+        valueFiles:
+          - $repo/kubernetes/openebs/values.yaml
+    - repoURL: https://github.com/KanarekLife/HomeLab.git
+      targetRevision: HEAD
+      ref: repo
+    - repoURL: https://github.com/KanarekLife/HomeLab.git
+      targetRevision: HEAD
+      path: kubernetes/openebs/manifests
+  destination:
+    name: in-cluster
+    namespace: openebs
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+    syncOptions:
+      - CreateNamespace=true

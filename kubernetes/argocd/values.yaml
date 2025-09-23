@@ -1,0 +1,73 @@
+global:
+  domain: argocd.homelab.lan.nieradko.com
+
+server:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+
+controller:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+    requests:
+      cpu: 75m
+      memory: 500Mi
+
+dex:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+
+repoServer:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+    requests:
+      cpu: 20m
+      memory: 200Mi
+
+notifications:
+  enabled: true
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 50Mi
+
+applicationSet:
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 50Mi
+
+redis:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 30Mi
+
+configs:
+  params:
+    server.insecure: true
