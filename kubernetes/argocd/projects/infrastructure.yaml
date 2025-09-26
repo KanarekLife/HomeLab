@@ -17,6 +17,7 @@ spec:
     - https://vmware-tanzu.github.io/helm-charts
     - https://seriohub.github.io/velero-helm
     - https://jellyfin.github.io/jellyfin-helm
+    - https://charts.external-secrets.io
   destinations:
     - namespace: "*"
       name: in-cluster
