@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbittorrent-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qbittorrent
+  template:
+    metadata:
+      labels:
+        app: qbittorrent
+    spec:
+      containers:
+        - name: qbittorrent
+          image: binhex/arch-qbittorrentvpn
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: downloads
+              mountPath: /downloads
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: Europe/Warsaw
+            - name: WEBUI_PORT
+              value: "8080"
+            - name: VPN_ENABLED
+              value: "true"
+            - name: VPN_PROV
+              value: "pia"
+            - name: VPN_PIA_USER
+              valueFrom:
+                secretKeyRef:
+                  name: pia-vpn-secret
+                  key: username
+            - name: VPN_PIA_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: pia-vpn-secret
+                  key: password
+            - name: LAN_NETWORK
+              value: "0.0.0.0/0"
+          ports:
+            - containerPort: 8080
+            - containerPort: 8118
+            - containerPort: 9118
+            - containerPort: 58946
+            - containerPort: 58946
+              protocol: UDP
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: qbittorrent-config-pvc
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: downloads-pvc

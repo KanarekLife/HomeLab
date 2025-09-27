@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: qbittorrent-service
+spec:
+  selector:
+    app: qbittorrent
+  type: ClusterIP
+  ports:
+    - port: 8080
+      name: gluetun-port
