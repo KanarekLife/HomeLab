@@ -4,7 +4,7 @@ metadata:
   name: cilium-gateway
   namespace: kube-system
   annotations:
-    cert-manager.io/cluster-issuer: "selfsigned-cluster-issuer"
+    cert-manager.io/cluster-issuer: cloudflare-prod-cluster-issuer
 spec:
   gatewayClassName: cilium
   listeners:
@@ -18,4 +18,4 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: argocd-selfsigned-cert-tls
+          - name: argocd-homelab-cert-tls
