@@ -1,0 +1,25 @@
+namespace: media
+
+resources:
+  - media-pvc.yaml
+  - downloads-pvc.yaml
+  - filebrowser/filebrowser-config-pvc.yaml
+  - filebrowser/filebrowser-deployment.yaml
+  - filebrowser/filebrowser-service.yaml
+  - filebrowser/filebrowser-configmap.yaml
+  - jellyfin/jellyfin-config-pvc.yaml
+  - jellyfin/jellyfin-deployment.yaml
+  - jellyfin/jellyfin-service.yaml
+  - prowlarr/prowlarr-config-pvc.yaml
+  - prowlarr/prowlarr-deployment.yaml
+  - prowlarr/prowlarr-service.yaml
+  - qbittorrent/qbittorrent-config-pvc.yaml
+  - qbittorrent/qbittorrent-deployment.yaml
+  - qbittorrent/qbittorrent-service.yaml
+  - qbittorrent/pia-vpn-secret.yaml
+  - sonarr/sonarr-config-pvc.yaml
+  - sonarr/sonarr-deployment.yaml
+  - sonarr/sonarr-service.yaml
+  - radarr/radarr-config-pvc.yaml
+  - radarr/radarr-deployment.yaml
+  - radarr/radarr-service.yaml

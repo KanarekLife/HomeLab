@@ -1,14 +1,14 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: cilium-gateway
+  name: default-gateway
   namespace: kube-system
   annotations:
     cert-manager.io/cluster-issuer: cloudflare-prod-cluster-issuer
 spec:
   gatewayClassName: cilium
   listeners:
-    - name: https-argocd
+    - name: argocd-https
       hostname: argocd.homelab.lan.nieradko.com
       protocol: HTTPS
       allowedRoutes:
@@ -19,3 +19,69 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: argocd-homelab-cert-tls
+    - name: jellyfin-https
+      hostname: jellyfin.homelab.lan.nieradko.com
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      port: 443
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: jellyfin-homelab-cert-tls
+    - name: filebrowser-https
+      hostname: filebrowser.homelab.lan.nieradko.com
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      port: 443
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: filebrowser-homelab-cert-tls
+    - name: prowlarr-https
+      hostname: prowlarr.homelab.lan.nieradko.com
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      port: 443
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: prowlarr-homelab-cert-tls
+    - name: downloads-https
+      hostname: downloads.homelab.lan.nieradko.com
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      port: 443
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: downloads-homelab-cert-tls
+    - name: sonarr-https
+      hostname: sonarr.homelab.lan.nieradko.com
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      port: 443
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: sonarr-homelab-cert-tls
+    - name: radarr-https
+      hostname: radarr.homelab.lan.nieradko.com
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      port: 443
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: radarr-homelab-cert-tls

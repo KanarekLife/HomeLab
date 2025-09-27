@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: radarr-service
+spec:
+  selector:
+    app: radarr
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 7878
+      targetPort: 7878
