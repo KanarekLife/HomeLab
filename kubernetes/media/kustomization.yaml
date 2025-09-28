@@ -7,6 +7,7 @@ resources:
   - filebrowser/filebrowser-deployment.yaml
   - filebrowser/filebrowser-service.yaml
   - filebrowser/filebrowser-configmap.yaml
+  - filebrowser/filebrowser-secret.yaml
   - jellyfin/jellyfin-config-pvc.yaml
   - jellyfin/jellyfin-deployment.yaml
   - jellyfin/jellyfin-service.yaml

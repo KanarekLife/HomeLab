@@ -21,7 +21,7 @@ spec:
         fsGroup: 1000
       containers:
         - name: filebrowser
-          image: gtstef/filebrowser:latest
+          image: ghcr.io/gtsteffaniak/filebrowser:0.8.7-beta
           env:
             - name: TZ
               value: "Europe/Warsaw"
@@ -29,6 +29,16 @@ spec:
               value: "/config/filebrowser.db"
             - name: FILEBROWSER_CONFIG
               value: "/config.yaml"
+            - name: FILEBROWSER_OIDC_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: filebrowser-secret
+                  key: authentik-clientid
+            - name: FILEBROWSER_OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: filebrowser-secret
+                  key: authentik-clientsecret
           volumeMounts:
             - name: config
               mountPath: /config

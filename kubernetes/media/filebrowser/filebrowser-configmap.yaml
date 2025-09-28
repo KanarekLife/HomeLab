@@ -18,3 +18,15 @@ data:
           name: Sonarr Config
         - path: /sources/radarr-config
           name: Radarr Config
+    auth:
+      methods:
+        password:
+          enabled: false
+        oidc:
+          enabled: true
+          issuerUrl: https://login.homelab.lan.nieradko.com/application/o/files/
+          scopes: "email openid profile groups"
+          userIdentifier: "preferred_username"
+          createUser: true
+          adminGroup: "Files Admins"
+          groupsClaim: "groups"
