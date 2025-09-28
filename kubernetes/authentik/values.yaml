@@ -1,0 +1,65 @@
+authentik:
+  error_reporting:
+    enabled: false
+
+  postgresql:
+    host: authentik-pg-cluster-rw
+    name: authentik
+    user: authentik
+
+server:
+  env:
+    - name: AUTHENTIK_POSTGRESQL__USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: authentik-secret
+          key: pg-username
+    - name: AUTHENTIK_POSTGRESQL__PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: authentik-secret
+          key: pg-password
+    - name: AUTHENTIK_SECRET_KEY
+      valueFrom:
+        secretKeyRef:
+          name: authentik-secret
+          key: secret-key
+  route:
+    main:
+      enabled: true
+      hostnames:
+        - login.homelab.lan.nieradko.com
+      parentRefs:
+        - name: default-gateway
+          namespace: kube-system
+
+worker:
+  env:
+    - name: AUTHENTIK_POSTGRESQL__USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: authentik-secret
+          key: pg-username
+    - name: AUTHENTIK_POSTGRESQL__PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: authentik-secret
+          key: pg-password
+    - name: AUTHENTIK_SECRET_KEY
+      valueFrom:
+        secretKeyRef:
+          name: authentik-secret
+          key: secret-key
+
+redis:
+  enabled: true
+  master:
+    kind: Deployment
+
+    persistence:
+      enabled: false
+
+    resources:
+      requests:
+        memory: 30Mi
+        cpu: 25m

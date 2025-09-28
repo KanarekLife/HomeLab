@@ -85,3 +85,14 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: radarr-homelab-cert-tls
+    - name: login-https
+      hostname: login.homelab.lan.nieradko.com
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      port: 443
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: login-homelab-cert-tls

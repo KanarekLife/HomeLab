@@ -1,0 +1,26 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: authentik-pg-cluster
+spec:
+  instances: 1
+  primaryUpdateStrategy: unsupervised
+
+  storage:
+    storageClass: host-zfs-standard
+    size: 1Gi
+
+  resources:
+    requests:
+      cpu: 25m
+      memory: 125Mi
+
+  bootstrap:
+    initdb:
+      database: authentik
+      owner: authentik
+      secret:
+        name: authentik-pg-secret
+
+  monitoring:
+    enablePodMonitor: true

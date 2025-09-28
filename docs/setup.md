@@ -38,6 +38,7 @@ $ helm repo add argo https://argoproj.github.io/argo-helm
 $ helm repo update
 $ helm install argocd argo/argo-cd -f kubernetes/argocd/values.yaml --create-namespace --namespace argocd --atomic
 $ kubectl apply -f kubernetes/argocd/apps/root-app.yaml
+$ kubectl create secret -n external-secrets generic bitwarden-access-token --from-literal=token=<TOKEN>
 ```
 
 ## ZFS Setup

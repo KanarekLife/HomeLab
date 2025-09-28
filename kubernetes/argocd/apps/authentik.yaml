@@ -1,29 +1,29 @@
-apiVersion: argoproj.io/v1alpha1
 kind: Application
+apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: argocd
+  name: authentik
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: infrastructure
   sources:
-    - repoURL: https://argoproj.github.io/argo-helm
-      chart: argo-cd
-      targetRevision: "8.3.1"
+    - repoURL: https://charts.goauthentik.io
+      chart: authentik
+      targetRevision: 2025.8.3
       helm:
-        releaseName: argocd
+        releaseName: authentik
         valueFiles:
-          - $repo/kubernetes/argocd/values.yaml
+          - $repo/kubernetes/authentik/values.yaml
     - repoURL: https://github.com/KanarekLife/HomeLab.git
       targetRevision: HEAD
       ref: repo
     - repoURL: https://github.com/KanarekLife/HomeLab.git
       targetRevision: HEAD
-      path: kubernetes/argocd/manifests
+      path: kubernetes/authentik/manifests
   destination:
     name: in-cluster
-    namespace: argocd
+    namespace: authentik
   syncPolicy:
     automated:
       prune: true

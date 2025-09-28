@@ -71,3 +71,30 @@ redis:
 configs:
   params:
     server.insecure: true
+  cm:
+    dex.config: |
+      connectors:
+        - config:
+            issuer: https://login.homelab.lan.nieradko.com/application/o/argocd/
+            clientID: $argocd-dex-secret:authentik-clientid
+            clientSecret: $argocd-dex-secret:authentik-clientsecret
+            insecureEnableGroups: true
+            scopes:
+              - openid
+              - profile
+              - email
+          name: authentik
+          type: oidc
+          id: authentik
+  rbac:
+    policy.default: role:user
+    policy.csv: |
+      p, role:user, applications, get, *, allow
+      p, role:user, applications, sync, *, allow
+      p, role:user, applicationsets, get, *, allow
+      p, role:user, clusters, get, *, allow
+      p, role:user, repositories, get, *, allow
+      p, role:user, logs, get, *, allow
+      g, admin, role:admin
+      g, ArgoCD Admins, role:admin
+      g, ArgoCD Viewers, role:user
