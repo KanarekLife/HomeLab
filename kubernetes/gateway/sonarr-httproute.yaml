@@ -2,7 +2,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: sonarr-httproute
-  namespace: media
+  namespace: authentik
 spec:
   parentRefs:
     - name: default-gateway
@@ -15,5 +15,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: sonarr-service
-          port: 8989
+        - name: ak-outpost-sonarr-outpost
+          port: 9000
