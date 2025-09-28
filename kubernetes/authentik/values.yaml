@@ -7,6 +7,13 @@ authentik:
     name: authentik
     user: authentik
 
+  email:
+    host: smtp.purelymail.com
+    port: 465
+    username: sso@nieradko.com
+    use_ssl: true
+    from: "nieradko.com SSO <sso@nieradko.com>"
+
 server:
   env:
     - name: AUTHENTIK_POSTGRESQL__USERNAME
@@ -24,6 +31,11 @@ server:
         secretKeyRef:
           name: authentik-secret
           key: secret-key
+    - name: AUTHENTIK_EMAIL__PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: authentik-secret
+          key: email-password
   route:
     main:
       enabled: true
@@ -50,6 +62,11 @@ worker:
         secretKeyRef:
           name: authentik-secret
           key: secret-key
+    - name: AUTHENTIK_EMAIL__PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: authentik-secret
+          key: email-password
 
 redis:
   enabled: true
