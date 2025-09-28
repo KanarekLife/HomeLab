@@ -12,6 +12,7 @@ spec:
       labels:
         app: jellyfin
     spec:
+      runtimeClassName: nvidia
       securityContext:
         runAsNonRoot: true
         seccompProfile:

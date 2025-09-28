@@ -1,0 +1,30 @@
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: nvidia-gpu
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: infrastructure
+  sources:
+    - repoURL: https://github.com/KanarekLife/HomeLab.git
+      targetRevision: HEAD
+      ref: repo
+    - repoURL: https://github.com/KanarekLife/HomeLab.git
+      targetRevision: HEAD
+      path: kubernetes/nvidia-gpu/manifests
+    - repoURL: https://nvidia.github.io/k8s-device-plugin
+      chart: nvidia-device-plugin
+      targetRevision: 0.17.4
+      helm:
+        releaseName: nvidia-gpu
+        valueFiles:
+          - $repo/kubernetes/nvidia-gpu/values.yaml
+  destination:
+    name: in-cluster
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
