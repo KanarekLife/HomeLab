@@ -2,7 +2,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: prowlarr-httproute
-  namespace: media
+  namespace: authentik
 spec:
   parentRefs:
     - name: default-gateway
@@ -15,5 +15,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: prowlarr-service
-          port: 9696
+        - name: ak-outpost-prowlarr-outpost
+          port: 9000
