@@ -30,8 +30,8 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: jellyfin-homelab-cert-tls
-    - name: filebrowser-https
-      hostname: filebrowser.homelab.lan.nieradko.com
+    - name: files-https
+      hostname: files.homelab.lan.nieradko.com
       protocol: HTTPS
       allowedRoutes:
         namespaces:

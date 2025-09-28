@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: filebrowser
+  name: files
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: filebrowser
+      app: files
   template:
     metadata:
       labels:
-        app: filebrowser
+        app: files
     spec:
       securityContext:
         runAsNonRoot: true
@@ -20,7 +20,7 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
       containers:
-        - name: filebrowser
+        - name: files
           image: ghcr.io/gtsteffaniak/filebrowser:0.8.7-beta
           env:
             - name: TZ
@@ -32,12 +32,12 @@ spec:
             - name: FILEBROWSER_OIDC_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: filebrowser-secret
+                  name: files-secret
                   key: authentik-clientid
             - name: FILEBROWSER_OIDC_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: filebrowser-secret
+                  name: files-secret
                   key: authentik-clientsecret
           volumeMounts:
             - name: config
@@ -68,10 +68,10 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: filebrowser-config-pvc
+            claimName: files-config-pvc
         - name: configmap
           configMap:
-            name: filebrowser-configmap
+            name: files-configmap
         - name: media
           persistentVolumeClaim:
             claimName: media-pvc

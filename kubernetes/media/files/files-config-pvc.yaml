@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: filebrowser-config-pvc
+  name: files-config-pvc
 spec:
   storageClassName: host-zfs-standard
   accessModes:
