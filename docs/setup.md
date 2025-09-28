@@ -46,4 +46,5 @@ $ kubectl apply -f kubernetes/argocd/apps/root-app.yaml
 $ kubectl apply -f kubernetes/openebs/shell-pod.yaml
 $ kubectl exec -n kube-system pod/zfs-shell -- nsenter --mount=/proc/1/ns/mnt -- zpool create -m legacy -f zfspv-pool mirror /dev/disk/by-id/ata-ST4000VN008-2DR166_ZGY94AQV /dev/disk/by-id/ata-ST4000VN008-2DR166_ZGY94AJ3
 $ kubectl exec -n kube-system pod/zfs-shell -- nsenter --mount=/proc/1/ns/mnt -- zpool status
+$ kubectl exec -n kube-system pod/zfs-shell -- nsenter --mount=/proc/1/ns/mnt -- zfs list
 ```

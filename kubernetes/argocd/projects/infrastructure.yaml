@@ -16,6 +16,7 @@ spec:
     - https://openebs.github.io/openebs
     - https://charts.external-secrets.io
     - https://nvidia.github.io/k8s-device-plugin
+    - https://vmware-tanzu.github.io/helm-charts
   destinations:
     - namespace: "*"
       name: in-cluster
