@@ -3,6 +3,8 @@ apiVersion: v1
 metadata:
   name: files-config-pvc
   namespace: media
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   storageClassName: host-zfs-standard
   accessModes:

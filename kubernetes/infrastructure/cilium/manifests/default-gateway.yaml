@@ -4,7 +4,7 @@ metadata:
   name: default-gateway
   namespace: kube-system
   annotations:
-    cert-manager.io/cluster-issuer: cloudflare-prod-cluster-issuer
+    cert-manager.io/cluster-issuer: cloudflare-prod-clusterissuer
 spec:
   gatewayClassName: cilium
   listeners:
