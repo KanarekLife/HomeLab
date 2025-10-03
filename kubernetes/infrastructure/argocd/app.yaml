@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: infrastructure
+  sources:
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-cd
+      targetRevision: "8.3.1"
+      helm:
+        releaseName: argocd
+        valueFiles:
+          - $repo/kubernetes/infrastructure/argocd/meta/values.yaml
+    - repoURL: https://github.com/KanarekLife/HomeLab.git
+      targetRevision: HEAD
+      ref: repo
+    - repoURL: https://github.com/KanarekLife/HomeLab.git
+      targetRevision: HEAD
+      path: kubernetes/infrastructure/argocd/manifests
+  destination:
+    name: in-cluster
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

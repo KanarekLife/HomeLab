@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/KanarekLife/HomeLab.git
+      targetRevision: HEAD
+      path: kubernetes/projects
+    - repoURL: https://github.com/KanarekLife/HomeLab.git
+      targetRevision: HEAD
+      path: kubernetes/infrastructure
+    - repoURL: https://github.com/KanarekLife/HomeLab.git
+      targetRevision: HEAD
+      path: kubernetes/applications
+  destination:
+    name: in-cluster
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

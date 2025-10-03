@@ -1,0 +1,14 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: downloads-pvc
+  namespace: media
+  labels:
+    velero.io/exclude-from-backup: "true"
+spec:
+  storageClassName: host-zfs-standard
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Gi
