@@ -21,7 +21,7 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
       containers:
-        - name: prowlarr
+        - name: bazarr
           image: lscr.io/linuxserver/bazarr:1.5.3
           volumeMounts:
             - name: config
