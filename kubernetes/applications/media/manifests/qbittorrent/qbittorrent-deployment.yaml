@@ -88,7 +88,7 @@ spec:
                   name: pia-vpn-secret
                   key: password
             - name: PIA_REGION
-              value: "swiss"
+              value: "nl_amsterdam"
           volumeMounts:
             - mountPath: /out
               name: wgconfig
