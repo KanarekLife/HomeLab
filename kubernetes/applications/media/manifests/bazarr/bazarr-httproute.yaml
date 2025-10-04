@@ -15,5 +15,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: ak-outpost-bazarr-outpost
+        - name: ak-outpost-default
           port: 9000
