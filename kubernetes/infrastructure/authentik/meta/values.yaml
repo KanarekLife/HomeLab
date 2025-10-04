@@ -12,7 +12,7 @@ authentik:
     port: 465
     username: sso@nieradko.com
     use_ssl: true
-    from: "nieradko.com SSO <sso@nieradko.com>"
+    from: "HomeLab SSO <sso@nieradko.com>"
 
 server:
   env:
