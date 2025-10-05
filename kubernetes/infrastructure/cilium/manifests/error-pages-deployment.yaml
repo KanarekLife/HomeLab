@@ -30,7 +30,7 @@ spec:
             - name: SHOW_DETAILS
               value: "false"
             - name: TEMPLATE_NAME
-              value: "l7"
+              value: "connection"
           resources:
             requests:
               memory: "64Mi"
