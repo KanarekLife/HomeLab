@@ -10,4 +10,4 @@ spec:
         - type: ResponseHeaderModifier
           responseHeaderModifier:
             remove:
-              - Server
+              - server
