@@ -9,7 +9,7 @@ spec:
   gatewayClassName: cilium
   listeners:
     - name: argocd-https
-      hostname: argocd.homelab.lan.nieradko.com
+      hostname: argocd.nieradko.com
       protocol: HTTPS
       allowedRoutes:
         namespaces:
@@ -20,7 +20,7 @@ spec:
         certificateRefs:
           - name: argocd-homelab-cert-tls
     - name: jellyfin-https
-      hostname: jellyfin.homelab.lan.nieradko.com
+      hostname: jellyfin.nieradko.com
       protocol: HTTPS
       allowedRoutes:
         namespaces:
@@ -31,7 +31,7 @@ spec:
         certificateRefs:
           - name: jellyfin-homelab-cert-tls
     - name: files-https
-      hostname: files.homelab.lan.nieradko.com
+      hostname: files.nieradko.com
       protocol: HTTPS
       allowedRoutes:
         namespaces:
@@ -42,7 +42,7 @@ spec:
         certificateRefs:
           - name: filebrowser-homelab-cert-tls
     - name: prowlarr-https
-      hostname: prowlarr.homelab.lan.nieradko.com
+      hostname: prowlarr.nieradko.com
       protocol: HTTPS
       allowedRoutes:
         namespaces:
@@ -53,7 +53,7 @@ spec:
         certificateRefs:
           - name: prowlarr-homelab-cert-tls
     - name: downloads-https
-      hostname: downloads.homelab.lan.nieradko.com
+      hostname: downloads.nieradko.com
       protocol: HTTPS
       allowedRoutes:
         namespaces:
@@ -64,7 +64,7 @@ spec:
         certificateRefs:
           - name: downloads-homelab-cert-tls
     - name: sonarr-https
-      hostname: sonarr.homelab.lan.nieradko.com
+      hostname: sonarr.nieradko.com
       protocol: HTTPS
       allowedRoutes:
         namespaces:
@@ -75,7 +75,7 @@ spec:
         certificateRefs:
           - name: sonarr-homelab-cert-tls
     - name: radarr-https
-      hostname: radarr.homelab.lan.nieradko.com
+      hostname: radarr.nieradko.com
       protocol: HTTPS
       allowedRoutes:
         namespaces:
@@ -86,7 +86,7 @@ spec:
         certificateRefs:
           - name: radarr-homelab-cert-tls
     - name: login-https
-      hostname: login.homelab.lan.nieradko.com
+      hostname: login.nieradko.com
       protocol: HTTPS
       allowedRoutes:
         namespaces:
@@ -97,7 +97,7 @@ spec:
         certificateRefs:
           - name: login-homelab-cert-tls
     - name: bazarr-https
-      hostname: bazarr.homelab.lan.nieradko.com
+      hostname: bazarr.nieradko.com
       protocol: HTTPS
       allowedRoutes:
         namespaces:

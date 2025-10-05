@@ -8,7 +8,7 @@ spec:
     - name: default-gateway
       namespace: kube-system
   hostnames:
-    - files.homelab.lan.nieradko.com
+    - files.nieradko.com
   rules:
     - matches:
         - path:

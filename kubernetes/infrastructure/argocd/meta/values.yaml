@@ -1,5 +1,5 @@
 global:
-  domain: argocd.homelab.lan.nieradko.com
+  domain: argocd.nieradko.com
 
 server:
   metrics:
@@ -75,7 +75,7 @@ configs:
     dex.config: |
       connectors:
         - config:
-            issuer: https://login.homelab.lan.nieradko.com/application/o/argocd/
+            issuer: https://login.nieradko.com/application/o/argocd/
             clientID: $argocd-dex-secret:authentik-clientid
             clientSecret: $argocd-dex-secret:authentik-clientsecret
             insecureEnableGroups: true

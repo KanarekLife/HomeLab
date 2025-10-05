@@ -40,7 +40,7 @@ server:
     main:
       enabled: true
       hostnames:
-        - login.homelab.lan.nieradko.com
+        - login.nieradko.com
       parentRefs:
         - name: default-gateway
           namespace: kube-system

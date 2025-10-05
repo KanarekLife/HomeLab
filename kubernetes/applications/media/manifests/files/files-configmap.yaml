@@ -25,7 +25,7 @@ data:
           enabled: false
         oidc:
           enabled: true
-          issuerUrl: https://login.homelab.lan.nieradko.com/application/o/files/
+          issuerUrl: https://login.nieradko.com/application/o/files/
           scopes: "email openid profile groups"
           userIdentifier: "preferred_username"
           createUser: true
