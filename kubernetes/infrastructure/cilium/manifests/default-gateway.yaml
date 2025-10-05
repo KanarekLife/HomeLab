@@ -10,10 +10,16 @@ spec:
   listeners:
     - name: http
       protocol: HTTP
+      allowedRoutes:
+        namespaces:
+          from: All
       port: 80
     - name: https
       hostname: "*.nieradko.com"
       protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
       port: 443
       tls:
         mode: Terminate
