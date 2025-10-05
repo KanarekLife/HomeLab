@@ -30,7 +30,7 @@ spec:
             - name: SHOW_DETAILS
               value: "false"
             - name: TEMPLATE_NAME
-              value: "connection"
+              value: "lost-in-space"
           resources:
             requests:
               memory: "64Mi"
