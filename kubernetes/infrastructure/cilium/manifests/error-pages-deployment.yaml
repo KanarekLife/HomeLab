@@ -26,6 +26,11 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
+          env:
+            - name: SHOW_DETAILS
+              value: "true"
+            - name: TEMPLATE_NAME
+              value: "l7"
           resources:
             requests:
               memory: "64Mi"
