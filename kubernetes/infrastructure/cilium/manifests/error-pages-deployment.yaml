@@ -28,7 +28,7 @@ spec:
               protocol: TCP
           env:
             - name: SHOW_DETAILS
-              value: "true"
+              value: "false"
             - name: TEMPLATE_NAME
               value: "l7"
           resources:
