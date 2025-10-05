@@ -96,17 +96,17 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: login-homelab-cert-tls
-    - name: bazarr-https
-      hostname: bazarr.nieradko.com
-      protocol: HTTPS
-      allowedRoutes:
-        namespaces:
-          from: All
-      port: 443
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: bazarr-homelab-cert-tls
+    # - name: bazarr-https
+    #   hostname: bazarr.nieradko.com
+    #   protocol: HTTPS
+    #   allowedRoutes:
+    #     namespaces:
+    #       from: All
+    #   port: 443
+    #   tls:
+    #     mode: Terminate
+    #     certificateRefs:
+    #       - name: bazarr-homelab-cert-tls
     - name: other-https
       hostname: "*.nieradko.com"
       protocol: HTTPS
