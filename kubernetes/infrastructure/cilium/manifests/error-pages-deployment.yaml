@@ -31,6 +31,8 @@ spec:
               value: "false"
             - name: TEMPLATE_NAME
               value: "lost-in-space"
+            - name: DISABLE_L10N
+              value: "true"
           resources:
             requests:
               memory: "64Mi"
