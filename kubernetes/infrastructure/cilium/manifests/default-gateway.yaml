@@ -8,7 +8,7 @@ metadata:
 spec:
   gatewayClassName: cilium
   listeners:
-    - name: other-https
+    - name: default-listener
       hostname: "*.nieradko.com"
       protocol: HTTPS
       allowedRoutes:
