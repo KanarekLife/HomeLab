@@ -1,7 +1,7 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: nvidia-gpu
+  name: intel-gpu
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -11,16 +11,14 @@ spec:
     - repoURL: https://github.com/KanarekLife/HomeLab.git
       targetRevision: HEAD
       ref: repo
-    - repoURL: https://github.com/KanarekLife/HomeLab.git
-      targetRevision: HEAD
-      path: kubernetes/infrastructure/nvidia-gpu/manifests
-    - repoURL: https://nvidia.github.io/k8s-device-plugin
-      chart: nvidia-device-plugin
-      targetRevision: 0.17.4
+    - repoURL: https://intel.github.io/helm-charts
+      chart: intel-device-plugins-operator
+      targetRevision: 0.34.0
       helm:
-        releaseName: nvidia-gpu
-        valueFiles:
-          - $repo/kubernetes/infrastructure/nvidia-gpu/meta/values.yaml
+        releaseName: intel-gpu
+    - repoURL: https://github.com/intel/intel-device-plugins-for-kubernetes
+      targetRevision: HEAD
+      path: deployments/gpu_plugin
   destination:
     name: in-cluster
     namespace: kube-system
