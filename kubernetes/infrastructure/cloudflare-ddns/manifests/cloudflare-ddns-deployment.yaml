@@ -13,23 +13,28 @@ spec:
       labels:
         app: cloudflare-ddns
     spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
         - name: cloudflare-ddns
-          image: oznu/cloudflare-ddns:latest
+          image: favonia/cloudflare-ddns:latest
           env:
-            - name: API_KEY
+            - name: CLOUDFLARE_API_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: ddns-cloudflare-api-token-secret
                   key: api-token
-            - name: ZONE
-              value: "nieradko.com"
-            - name: SUBDOMAIN
-              value: "homelab"
+            - name: DOMAINS
+              value: "homelab.nieradko.com"
             - name: PROXIED
               value: "false"
-            - name: RRTYPE
-              value: "A"
+            - name: IP6_PROVIDER
+              value: "none"
           resources:
             requests:
               memory: "64Mi"
@@ -37,3 +42,9 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "200m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
