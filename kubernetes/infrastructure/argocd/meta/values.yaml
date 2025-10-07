@@ -30,6 +30,10 @@ dex:
     requests:
       cpu: 10m
       memory: 100Mi
+  livenessProbe:
+    enabled: true
+  startupProbe:
+    enabled: true
 
 repoServer:
   metrics:
